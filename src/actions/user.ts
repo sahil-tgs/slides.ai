@@ -1,7 +1,8 @@
+// src/actions/user.ts
 "use server";
 import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
-export const onAuthenticteUser = async () => {
+export const onAuthenticateUser = async () => {
   try {
     const user = await currentUser();
     if (!user) {

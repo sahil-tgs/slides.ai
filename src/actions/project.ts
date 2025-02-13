@@ -1,7 +1,8 @@
 "use server";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { onAuthenticteUser } from "./user";
+import { onAuthenticateUser } from "./user";
+import { client } from "@/lib/prisma";
+
 export const getAllProjects = async () => {
   try {
     const checkUser = await onAuthenticateUser();
@@ -9,14 +10,13 @@ export const getAllProjects = async () => {
       return { status: 403, error: "User not Authenticated" };
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const projects = await client.project.findMany({
       where: {
         userId: checkUser.user.id,
         isDeleted: false,
       },
       orderBy: {
-        updateAt: "desc",
+        updatedAt: "desc", // ✅ Fixed typo here
       },
     });
 
@@ -25,9 +25,8 @@ export const getAllProjects = async () => {
     }
 
     return { status: 200, data: projects };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     console.log("🔴 Error", error);
-    return { status: 500, error: 'Internal Server Error' };
+    return { status: 500, error: "Internal Server Error" };
   }
 };

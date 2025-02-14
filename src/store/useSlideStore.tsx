@@ -1,9 +1,20 @@
-import {create} from "zustand";
-import {persist} from "zustand/middleware";
+import { Slide } from '@/lib/types'
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-export const setSlidesStore = create(
-    persist( ()=> ({
-        states: null,
-        setStates: () =>
-    }) )
+interface SlideState {
+    slides: Slide[]
+    setSlides: (slides: Slide[]) => void
+}
+
+export const useSlideStore = create(
+    persist<SlideState>(
+        (set) => ({
+            slides: [],
+            setSlides: (slides: Slide[]) => set({ slides }),
+        }),
+        {
+            name: 'slides-storage',
+        }
+    )
 )

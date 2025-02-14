@@ -4,13 +4,14 @@ import { onAuthenticateUser } from "@/actions/user";
 import AppSidebar from "@/components/global/add-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { redirect } from "next/navigation";
+import {getRecentProjects} from "@/actions/project";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const layout = async ({ children }: Props) => {
-  // const recent Projects = await getRecentProjects();
+  const recentProjects = await getRecentProjects();
   const checkUser = await onAuthenticateUser();
 
   if (!checkUser.user) {
@@ -19,7 +20,7 @@ const layout = async ({ children }: Props) => {
 
   return (
     <SidebarProvider>
-      <AppSidebar></AppSidebar>
+      <AppSidebar user={checkUser.user} recentProjects={recentProjects.data || []} />
     </SidebarProvider>
   );
 };

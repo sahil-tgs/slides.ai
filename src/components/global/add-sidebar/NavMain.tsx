@@ -7,16 +7,15 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { Clock } from "lucide-react"; // Example icon import, adjust as needed
+import { usePathname } from "next/navigation"; // ✅ Use usePathname instead
+import { LucideHome, LucideLayoutTemplate, LucideSettings, LucideTrash } from "lucide-react";
 
 const NavMain = ({
-  items,
-}: {
+                   items,
+                 }: {
   items: {
-    item: string;
+    title: string; // ✅ Changed from "item" to "title"
     url: string;
     icon: React.FC<React.SVGProps<SVGSVGElement>>;
     isActive?: boolean;
@@ -26,31 +25,27 @@ const NavMain = ({
     }[];
   }[];
 }) => {
-  const params = useParams();
-  const pathname = params?.slug || ""; // Adjust according to your routing setup
+  const pathname = usePathname(); // ✅ Get current route
 
   return (
-    <SidebarGroup className="p-0">
-      <SidebarMenu>
-        <SidebarMenuItem>
-          <SidebarMenuButton
-            asChild
-            tooltip={"Test"}
-            className={`${pathname.includes("TEST") ? "bg-background-80" : ""}`}
-          >
-            <Link
-              href="/TEST"
-              className={`text-lg ${
-                pathname.includes("TEST") ? "font-bold" : ""
-              }`}
-            >
-              <Clock className="text-lg" />
-              <span>Test Sidebar Item</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    </SidebarGroup>
+      <SidebarGroup className="p-0">
+        <SidebarMenu>
+          {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                    asChild
+                    tooltip={item.title}
+                    className={`${pathname.includes(item.url) && "bg-muted"}`}
+                >
+                  <Link href={item.url} className={`text-lg ${pathname.includes(item.url) ? "font-bold" : ""}`}>
+                    <item.icon className="text-lg" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarGroup>
   );
 };
 

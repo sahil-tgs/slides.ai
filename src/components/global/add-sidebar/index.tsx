@@ -11,7 +11,8 @@ import { Project, User } from "@prisma/client";
 import React from "react";
 import NavMain from "@/components/global/add-sidebar/NavMain"; // ✅ Corrected import
 import { data } from "@/lib/constants";
-import RecentOpen from "@/components/global/add-sidebar/recent-open"; // ✅ Import data properly
+import RecentOpen from "@/components/global/add-sidebar/recent-open";
+import NavFooter from "@/components/global/add-sidebar/nav-footer"; // ✅ Import data properly
 
 const AppSidebar = ({
                       recentProjects,
@@ -37,7 +38,9 @@ const AppSidebar = ({
           <NavMain items={data.navMain} /> {/* ✅ Corrected data reference */}
           <RecentOpen recentProjects={recentProjects}/>
         </SidebarContent>
-        <SidebarFooter />
+        <SidebarFooter>
+            <NavFooter prismaUser={user}/>
+        </SidebarFooter>
       </Sidebar>
   );
 };

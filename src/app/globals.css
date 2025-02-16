@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    /* Core colors - Neutral base */
-    --background: 0 0% 98%;
-    --foreground: 220 3% 8%;
+    /* Core colors - Softer base */
+    --background: 35 30% 97%;
+    --foreground: 35 15% 15%;
 
-    /* Surface colors - Neutral with slight warmth */
-    --surface-100: 0 0% 98%;
-    --surface-200: 220 3% 96%;
-    --surface-300: 220 3% 94%;
-    --surface-400: 220 3% 92%;
+    /* Surface colors - Warm candy tones */
+    --surface-100: 35 30% 97%;
+    --surface-200: 35 25% 94%;
+    --surface-300: 35 20% 91%;
+    --surface-400: 35 15% 88%;
 
-    /* Brand colors - Golden */
-    --brand-50: 35 90% 98%;
-    --brand-100: 35 90% 95%;
-    --brand-200: 35 90% 85%;
-    --brand-300: 35 90% 75%;
-    --brand-400: 35 90% 65%;
-    --brand-500: 35 90% 55%;
-    --brand-600: 35 85% 45%;
-    --brand-700: 35 85% 35%;
-    --brand-800: 35 85% 25%;
-    --brand-900: 35 85% 15%;
+    /* Brand colors - Refined Golden */
+    --brand-50: 35 95% 97%;
+    --brand-100: 35 90% 92%;
+    --brand-200: 35 85% 85%;
+    --brand-300: 35 80% 75%;
+    --brand-400: 35 75% 65%;
+    --brand-500: 35 70% 55%;
+    --brand-600: 35 65% 45%;
+    --brand-700: 35 60% 35%;
+    --brand-800: 35 55% 25%;
+    --brand-900: 35 50% 15%;
 
-    /* Accent colors - Warm Amber (keeping as requested) */
-    --accent-500: 43 96% 64%;
-    --accent-600: 43 96% 54%;
+    /* Accent colors - Warmer Amber */
+    --accent-500: 43 85% 65%;
+    --accent-600: 43 80% 55%;
 
-    /* Semantic colors */
-    --success-500: 145 54% 45%;
-    --warning-500: 35 90% 55%;
-    --error-500: 358 75% 59%;
-    --info-500: 213 70% 45%;
+    /* Semantic colors - Softened */
+    --success-500: 145 45% 50%;
+    --warning-500: 35 80% 60%;
+    --error-500: 358 65% 65%;
+    --info-500: 213 60% 50%;
 
-    /* Text colors - Neutral */
-    --text-primary: 220 3% 8%;
-    --text-secondary: 220 3% 30%;
-    --text-tertiary: 220 3% 50%;
-    --text-disabled: 220 3% 70%;
+    /* Text colors - Warmer neutral */
+    --text-primary: 35 15% 15%;
+    --text-secondary: 35 12% 35%;
+    --text-tertiary: 35 10% 55%;
+    --text-disabled: 35 8% 75%;
 
-    /* Glass effects */
-    --glass-background: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    /* Glass effects - Softer */
+    --glass-background: rgba(255, 253, 250, 0.65);
+    --glass-border: rgba(255, 248, 240, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(35, 35, 35, 0.05);
 
     /* Component colors */
     --card: var(--glass-background);
@@ -63,15 +63,14 @@
     --destructive: var(--error-500);
     --destructive-foreground: var(--surface-100);
 
-    /* Border & Input */
-    --border: 220 3% 90%;
-    --input: 220 3% 90%;
-    --ring: 35 90% 55%;
-    --focus-ring: 35 90% 55%;
+    /* Border & Input - Softer */
+    --border: 35 20% 90%;
+    --input: 35 20% 90%;
+    --ring: 35 70% 55%;
+    --focus-ring: 35 70% 55%;
 
-    /* Gradient */
-    --creative-ai-gradient: linear-gradient(135deg, hsl(35, 90%, 55%) 0%, hsl(43, 96%, 64%) 100%);
-
+    /* Gradient - Softer */
+    --creative-ai-gradient: linear-gradient(135deg, hsl(35, 70%, 55%) 0%, hsl(43, 85%, 65%) 100%);
     --radius: 0.75rem;
   }
 
@@ -126,11 +125,9 @@
     border-color: var(--glass-border);
     box-shadow: var(--glass-shadow);
   }
-
   .glass-card {
     @apply glass rounded-lg;
   }
-
   .glass-button {
     @apply glass px-4 py-2 rounded-lg transition-all hover:brightness-110 active:brightness-90;
   }

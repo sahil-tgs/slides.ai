@@ -29,22 +29,35 @@ const NavMain = ({
 
   return (
       <SidebarGroup className="p-0">
-        <SidebarMenu>
-          {items.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton
-                    asChild
-                    tooltip={item.title}
-                    className={`${pathname.includes(item.url) && "bg-muted"}`}
-                >
-                  <Link href={item.url} className={`text-lg ${pathname.includes(item.url) ? "font-bold" : ""}`}>
-                    <item.icon className="text-lg" />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+          <SidebarMenu>
+              {items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                          asChild
+                          tooltip={item.title}
+                          className={`${pathname.includes(item.url) && "bg-surface-300"}`}
+                      >
+                          <Link
+                              href={item.url}
+                              className={`text-lg ${
+                                  pathname.includes(item.url)
+                                      ? "font-bold text-text-primary"
+                                      : "text-text-secondary hover:text-text-primary"
+                              }`}
+                          >
+                              <item.icon
+                                  className={`text-lg ${
+                                      pathname.includes(item.url)
+                                          ? "text-text-primary"
+                                          : "text-text-secondary"
+                                  }`}
+                              />
+                              <span>{item.title}</span>
+                          </Link>
+                      </SidebarMenuButton>
+                  </SidebarMenuItem>
+              ))}
+          </SidebarMenu>
       </SidebarGroup>
   );
 };

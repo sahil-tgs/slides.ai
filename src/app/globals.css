@@ -2,81 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-    --creative-ai-gradient: linear-gradient(180deg, #F55C7A 0%, #f6bc66)
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Core colors - Neutral base */
+    --background: 0 0% 98%;
+    --foreground: 220 3% 8%;
 
+    /* Surface colors - Neutral with slight warmth */
+    --surface-100: 0 0% 98%;
+    --surface-200: 220 3% 96%;
+    --surface-300: 220 3% 94%;
+    --surface-400: 220 3% 92%;
+
+    /* Brand colors - Golden */
+    --brand-50: 35 90% 98%;
+    --brand-100: 35 90% 95%;
+    --brand-200: 35 90% 85%;
+    --brand-300: 35 90% 75%;
+    --brand-400: 35 90% 65%;
+    --brand-500: 35 90% 55%;
+    --brand-600: 35 85% 45%;
+    --brand-700: 35 85% 35%;
+    --brand-800: 35 85% 25%;
+    --brand-900: 35 85% 15%;
+
+    /* Accent colors - Warm Amber (keeping as requested) */
+    --accent-500: 43 96% 64%;
+    --accent-600: 43 96% 54%;
+
+    /* Semantic colors */
+    --success-500: 145 54% 45%;
+    --warning-500: 35 90% 55%;
+    --error-500: 358 75% 59%;
+    --info-500: 213 70% 45%;
+
+    /* Text colors - Neutral */
+    --text-primary: 220 3% 8%;
+    --text-secondary: 220 3% 30%;
+    --text-tertiary: 220 3% 50%;
+    --text-disabled: 220 3% 70%;
+
+    /* Glass effects */
+    --glass-background: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+
+    /* Component colors */
+    --card: var(--glass-background);
+    --card-foreground: var(--text-primary);
+    --popover: var(--glass-background);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--brand-500);
+    --primary-foreground: var(--surface-100);
+    --secondary: var(--surface-300);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--surface-300);
+    --muted-foreground: var(--text-tertiary);
+    --accent: var(--accent-500);
+    --accent-foreground: var(--text-primary);
+    --destructive: var(--error-500);
+    --destructive-foreground: var(--surface-100);
+
+    /* Border & Input */
+    --border: 220 3% 90%;
+    --input: 220 3% 90%;
+    --ring: 35 90% 55%;
+    --focus-ring: 35 90% 55%;
+
+    /* Gradient */
+    --creative-ai-gradient: linear-gradient(135deg, hsl(35, 90%, 55%) 0%, hsl(43, 96%, 64%) 100%);
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Core colors - Silver/Neutral dark */
+    --background: 220 3% 11%;
+    --foreground: 220 3% 94%;
+
+    /* Surface colors - Silver metallic */
+    --surface-100: 220 3% 11%;
+    --surface-200: 220 3% 14%;
+    --surface-300: 220 3% 17%;
+    --surface-400: 220 3% 20%;
+
+    /* Glass effects - Dark */
+    --glass-background: rgba(28, 28, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Keep brand/accent colors */
+    --brand-500: 35 90% 65%;
+    --accent-500: 43 96% 64%;
+
+    /* Text colors - Silver */
+    --text-primary: 220 3% 94%;
+    --text-secondary: 220 3% 74%;
+    --text-tertiary: 220 3% 54%;
+    --text-disabled: 220 3% 34%;
+
+    /* Border & Input dark */
+    --border: 220 3% 16%;
+    --input: 220 3% 16%;
+    --ring: 35 90% 65%;
+    --focus-ring: 35 90% 65%;
   }
 }
 
@@ -85,13 +114,30 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-.text-vivid{
-  background: linear-gradient(180deg, #F55C7A 0%, #f6bc66);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+@layer components {
+  .glass {
+    @apply backdrop-blur-md border border-solid;
+    background: var(--glass-background);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    @apply glass rounded-lg;
+  }
+
+  .glass-button {
+    @apply glass px-4 py-2 rounded-lg transition-all hover:brightness-110 active:brightness-90;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-creative-ai-gradient;
+  }
 }

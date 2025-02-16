@@ -1,4 +1,3 @@
-
 import type { Config } from 'tailwindcss'
 
 export default {
@@ -9,105 +8,102 @@ export default {
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px",
+			},
+		},
 		extend: {
-			// Custom Colors
 			colors: {
-				// Example gradient from screenshots
-				'creative-ai-gradient': 'var(--Project-Color-Styles-CreativeAI-Gradient, #F55C7A)',
-
-				// Background & Foreground
-				background: {
-					DEFAULT: 'hsl(var(--background))',
-					primary: 'hsl(var(--background-primary))',
-					90: 'hsl(var(--background-90))',
-					80: 'hsl(var(--background-80))',
-					70: 'hsl(var(--background-70))',
-					25: 'hsl(var(--background-25))',
-					20: 'hsl(var(--background-20))',
-				},
+				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 
-				// Card & Popover
+				surface: {
+					100: 'hsl(var(--surface-100))',
+					200: 'hsl(var(--surface-200))',
+					300: 'hsl(var(--surface-300))',
+					400: 'hsl(var(--surface-400))',
+				},
+
+				brand: {
+					50: 'hsl(var(--brand-50))',
+					100: 'hsl(var(--brand-100))',
+					200: 'hsl(var(--brand-200))',
+					300: 'hsl(var(--brand-300))',
+					400: 'hsl(var(--brand-400))',
+					500: 'hsl(var(--brand-500))',
+					600: 'hsl(var(--brand-600))',
+					700: 'hsl(var(--brand-700))',
+					800: 'hsl(var(--brand-800))',
+					900: 'hsl(var(--brand-900))',
+				},
+
+				text: {
+					primary: 'hsl(var(--text-primary))',
+					secondary: 'hsl(var(--text-secondary))',
+					tertiary: 'hsl(var(--text-tertiary))',
+					disabled: 'hsl(var(--text-disabled))',
+				},
+
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
-					'primary-80': 'hsl(var(--primary-80))'
 				},
+
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))',
 				},
 
-				// Primary & Secondary
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					10: 'hsl(var(--primary-10))',
-					20: 'hsl(var(--primary-20))',
-					80: 'hsl(var(--primary-80))',
-					90: 'hsl(var(--primary-90))',
 				},
+
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
-					90: 'hsl(var(--secondary-90))',
 				},
 
-				// Muted, Accent, Destructive
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))',
 				},
+
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
 				},
+
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
 				},
 
-				// Misc
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-
-				// Charts
-				chart: {
-					'1': 'hsl(var(--chart-1))',
-					'2': 'hsl(var(--chart-2))',
-					'3': 'hsl(var(--chart-3))',
-					'4': 'hsl(var(--chart-4))',
-					'5': 'hsl(var(--chart-5))',
-				},
-
-				// Sidebar
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					muted: 'hsl(var(--sidebar-muted))',
 					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))',
 				},
+
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
 			},
 
-			// Background Image Gradients
-			backgroundImage: {
-				// "vivid-gradient" is a typical key name from the screenshots
-				'vivid-gradient': 'var(--creative-ai-gradient)',
-			},
-
-			// Border Radii
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
 			},
 
-			// Keyframes
+			backgroundImage: {
+				'creative-ai-gradient': 'var(--creative-ai-gradient)',
+			},
+
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },
@@ -117,16 +113,46 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' },
 				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' },
+				},
+				'fade-out': {
+					from: { opacity: '1' },
+					to: { opacity: '0' },
+				},
 			},
 
-			// Animations
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.2s ease-out',
+				'fade-out': 'fade-out 0.2s ease-out',
+			},
+
+			fontSize: {
+				'2xs': '0.625rem',
+				'3xs': '0.5rem',
+			},
+
+			spacing: {
+				18: '4.5rem',
+				22: '5.5rem',
+			},
+
+			height: {
+				screen: ['100vh /* fallback */', '100dvh'],
+			},
+
+			minHeight: {
+				screen: ['100vh /* fallback */', '100dvh'],
+			},
+
+			maxHeight: {
+				screen: ['100vh /* fallback */', '100dvh'],
 			},
 		},
 	},
-	// Plugin(s)
 	plugins: [
 		require('tailwindcss-animate'),
 	],

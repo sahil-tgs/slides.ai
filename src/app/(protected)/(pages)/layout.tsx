@@ -16,7 +16,7 @@ const layout = async ({ children }: Props) => {
   const checkUser = await onAuthenticateUser();
 
   if (!checkUser.user) {
-    redirect("/sign-in");
+    redirect("./sign-in");
   }
 
   return (

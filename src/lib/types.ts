@@ -56,3 +56,15 @@ export type ContentType =
     | 'customButton'
     | 'tableOfContents';
 
+export interface Theme {
+    name: string;
+    fontFamily: string;
+    fontColor: string;
+    backgroundColor: string;
+    slideBackgroundColor: string;
+    accentColor: string;
+    gradientBackground: string;
+    sidebarColor?: string;      // Made optional with ?
+    navbarColor: string;        // Fixed typo from navbarColor?
+    mode: 'light' | 'dark';     // Using literal type for mode
+}

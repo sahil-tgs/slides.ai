@@ -16,7 +16,7 @@ const NewProjectButton = ({ user }: { user: User }) => {
     const router = useRouter();
 
     const handleClick = () => {
-        router.push('/projects/new');
+        router.push('/create-page');
     };
 
     return (

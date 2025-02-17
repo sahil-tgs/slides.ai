@@ -9,26 +9,27 @@ import { useSlideStore } from "@/store/useSlideStore";
 import { timeAgo } from "@/lib/utils";
 import AlertDialogBox from "@/components/global/alert-dialog";
 import { Button } from "@/components/ui/button";
-import {toast} from "sonner";
+import { toast } from "sonner";
+import {deleteProject, recoverProject} from "@/actions/project";
+
 
 type Props = {
     projectId: string;
     title: string;
     createdAt: string;
-    src: string;
+    themeName: string;
     isDeleted?: boolean;
     slideData: JsonValue;
-    themeName: string;
+
 };
 
 const ProjectCard = ({
                          createdAt,
                          projectId,
                          slideData,
-                         src,
                          title,
-                         isDeleted,
                          themeName,
+                         isDeleted,
                      }: Props) => {
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
@@ -36,6 +37,38 @@ const ProjectCard = ({
     const router = useRouter();
 
     const theme = themes.find((t) => t.name === themeName) || themes[0];
+
+    const handleDelete = async () => {
+        setLoading(true);
+        if(!projectId) {
+            setLoading(false);
+            toast.error("Error", {
+                description: "Project not found.",
+            });
+            return;
+        }
+        try {
+            const res = await deleteProject(projectId);
+            if(res.status !== 200) {
+                toast.error('Oopsie!', {
+                    description: res.error || "Something went wrong.",
+                });
+                return;
+            }
+            setOpen(false);
+            router.refresh();
+            toast.success("Success", {
+                description: "Project moved to trash successfully"
+            });
+        } catch (error) {
+            console.error(error);
+            toast.error('Oopsie!', {
+                description: "Something went wrong. Please contact support",
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleRecover = async () => {
         setLoading(true)
@@ -48,8 +81,24 @@ const ProjectCard = ({
         }
         try {
             const res = await recoverProject(projectId);
+            if(res.status !== 200) {
+                toast.error('Oopsie!', {
+                    description: res.error || "Something went wrong.",
+                })
+                return
+            }
+            setOpen(false)
+            router.refresh()
+            toast.success("Success", {
+                description: "Project recovered successfully"
+            })
         } catch (error){
-
+            console.error(error)
+            toast.error('Oopsie!', {
+                description: "Something went wrong. Please contact support",
+            })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -104,7 +153,7 @@ const ProjectCard = ({
                         <p className="text-sm text-muted-foreground" suppressHydrationWarning>
                             {timeAgo(createdAt)}
                         </p>
-                        {/*{isDeleted && (*/}
+                        {isDeleted ? (
                             <div className="flex items-center gap-2">
                                 <AlertDialogBox
                                     description="This will recover your project and restore your data"
@@ -117,12 +166,30 @@ const ProjectCard = ({
                                     <Button disabled={loading}>Recover</Button>
                                 </AlertDialogBox>
                             </div>
-                        {/*)}*/}
-                    </div>
+                        ) : (
+                            <AlertDialogBox
+                                description="This will delete your project and send to trash."
+                                className="bg-red-500 text-white dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700"
+                                onClick={handleDelete}
+                                loading={loading}
+                                open={open}
+                                handleOpen={() => setOpen(!open)}
+                            >
+                                <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="bg-background-80 dark:hover:bg-background-90"
+                                    disabled={loading}
+                                >
+                                    Delete
+                                </Button>
+                            </AlertDialogBox>
+                        )}
                 </div>
             </div>
-        </motion.div>
-    );
+        </div>
+</motion.div>
+);
 };
 
 export default ProjectCard;

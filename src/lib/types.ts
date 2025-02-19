@@ -68,3 +68,9 @@ export interface Theme {
     navbarColor: string;        // Fixed typo from navbarColor?
     mode: 'light' | 'dark';     // Using literal type for mode
 }
+
+export interface OutlineCard {
+    title: string
+    id: string
+    order: number
+}

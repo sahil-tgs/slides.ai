@@ -1,6 +1,6 @@
 'use client'
 import {motion} from 'framer-motion'
-import React from 'react';
+import React, { useEffect } from 'react';
 import {containerVariants, CreatePageCard, itemVariants} from "@/lib/constants";
 import {Button} from "@/components/ui/button";
 import RecentPrompts from "@/app/(protected)/(pages)/(dashboardPages)/create-page/_components/GenerateAI/RecentPrompts";
@@ -11,7 +11,13 @@ type Props = {
 }
 
 const CreatePage = ({onSelectOption}: Props) => {
+    // console.log('CreatePage render, onSelectOption is:', typeof onSelectOption); // Add this
         const {prompts, setPage} = usePromptStore()
+
+        // useEffect(() => {
+        //     setPage('create')
+        // }, [])
+
     return (
         <motion.div
             variants={containerVariants}
@@ -86,11 +92,11 @@ const CreatePage = ({onSelectOption}: Props) => {
                             </motion.div>
                         </motion.div>
                     </motion.div>
-                ))}
+                ))} 
             </motion.div>
-
-            <RecentPrompts/>
-
+            {prompts.length > 0 && (
+                <RecentPrompts/>
+            )}
         </motion.div>
     );
 };

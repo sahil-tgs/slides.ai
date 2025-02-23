@@ -8,13 +8,13 @@ type Prompt = {
     id: string;
     createdAt: string;
     title: string;
-    outlines: OutlineCard[];
+    outlines: OutlineCard[] | [];
 };
 
 type PromptStore = {
     page: Page;
     setPage: (page: Page) => void;
-    prompts: Prompt[];
+    prompts: Prompt[] | [];
     addPrompt: (prompt: Prompt) => void;
     removePrompt: (id: string) => void;
 };
@@ -35,7 +35,7 @@ const usePromptStore = create<PromptStore>()(
 
                 removePrompt: (id: string) =>
                     set((state) => ({
-                        prompts: state.prompts.filter((prompt) => prompt.id !== id),
+                        prompts: state.prompts.filter((prompt: Prompt) => prompt.id !== id),
                     })),
             }),
             { name: "prompts" }

@@ -3,21 +3,37 @@ import { OutlineCard } from "@/lib/types";
 import { persist } from "zustand/middleware";
 
 type CreativeAIStore = {
-    outline: OutlineCard[];
+    outlines: OutlineCard[];  // Fixed: Changed 'outline' to 'outlines'
+    setCurrentAiPrompt: (prompt: string) => void;
     addMultipleOutlines: (outlines: OutlineCard[]) => void;
     addOutline: (outline: OutlineCard) => void;
+    currentAiPrompt: string;
+    resetOutline: () => void;
 };
 
 const useCreativeAIStore = create<CreativeAIStore>()(
     persist(
-        (set) => ({
-            outline: [],
-            addMultipleOutlines: (outlines) => set((state) => ({ outline: [...state.outline, ...outlines] })),
-            addOutline: (outline) => set((state) => ({ outline: [...state.outline, outline] })),
-        }),
-        {
-            name: "creative-ai",
-        }
+      (set) => ({
+        currentAiPrompt: '',
+        setCurrentAiPrompt: (prompt: string) => {
+          set({ currentAiPrompt: prompt });
+        },
+        outlines: [],
+        addOutline: (outline: OutlineCard) => {
+          set((state) => ({ 
+            outlines: [outline, ...state.outlines], // Append new outline
+          }));
+        },
+        addMultipleOutlines: (outlines: OutlineCard[]) => {
+          set((state) => ({
+            outlines: [...outlines], // Append multiple outlines
+          }));
+        },
+          resetOutline: () => set({ outlines: [] }),
+      }),
+      {
+        name: 'creative-ai', // storage key for the persisted store
+      }
     )
 );
 

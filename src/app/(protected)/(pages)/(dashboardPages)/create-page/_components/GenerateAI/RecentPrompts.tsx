@@ -6,17 +6,27 @@ import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/constants";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import useCreativeAIStore from "@/store/useCreativeAIStore";
+import { toast } from "sonner";
+
 
 const RecentPrompts: React.FC = () => {
     const { prompts, setPage } = usePromptStore();
+    const { addMultipleOutlines, setCurrentAiPrompt } = useCreativeAIStore();
 
     const handleEdit = (id: string) => {
-        const prompt = prompts.find((prompt) => prompt.id === id);
-        if (!prompt) return;
+        const prompt = prompts.find((prompt) => prompt?.id === id);
+        if (prompt) {
+            setPage('creative-ai');
+            addMultipleOutlines(prompt.outlines);
+            setCurrentAiPrompt(prompt.title);
+        } else {
+            toast.error('Error', {
+                description: 'Prompt not found',
+            });
+        }
 
-        setPage('creative-ai');
-        addMultipleOutline(prompt.outlines);
-        setCurrentAiPrompt(prompt.title);
+
     };
 
     const timeAgo = (date: string) => {
